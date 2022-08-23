@@ -1,0 +1,25 @@
+<!-- LOGIN FORM begins -->
+<div class="container has-text-centered">
+    <div class="column is-4 is-offset-4 is-centered mt-10" style="margin-top: 50px;">
+        <h3 class="title has-text-black">Login</h3>
+        <hr class="login-hr">
+        <div class="box drop-shadow">
+            <form (ngSubmit)="onLogin()">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="email" name="email" [(ngModel)]="email" placeholder="Your Email" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="password" name="password" [(ngModel)]="password" placeholder="Your Password">
+                    </div>
+                </div>
+                <button class="button is-block is-primary is-large is-fullwidth mt-2">Login <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                <button type="button" class="button is-block is-danger is-large is-fullwidth mt-2" (click)="GoogleSignIn()">GOOGLE <i class="fa fa-google-plus" aria-hidden="true"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- LOGIN FORM ends -->

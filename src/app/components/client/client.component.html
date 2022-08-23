@@ -1,0 +1,66 @@
+<section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title has-text-centered">
+         CLIENTS
+        </h1>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+      <div class="columns">
+          <div class="column">
+              <a class="button is-primary mt-5" routerLink="/client/add"> <i class="fas fa-folder-plus mr-2"></i> ADD CLIENT </a>
+          </div>
+          <div class="column">
+            <div class="level-item has-text-centered is-pulled-right mt-5">
+                <div>
+                  <p class="heading">BALANCE</p>
+                  <p class="title">{{total | currency:'USD':'symbol'}}</p>
+                </div>
+              </div>
+        </div>
+      </div>
+      <div class="columns is-centered">
+          <div class="column mt-5">
+            <table class="table is-responsive is-mobile is-striped is-hoverable is-fullwidth" *ngIf="clients.length > 0; else noClients">
+
+                <thead>
+                  <tr>
+                    <th>FISRT NAME</th>
+                    <th>LAST NAME</th>
+                    <th>EMAIL</th>
+                    <th>PHONE</th>
+                    <th>BALANCE</th>
+                    <th>ACTION</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let client of clients">
+                    <td>{{client.firstName}}</td>
+                    <td>{{client.lastName}}</td>
+                    <td>{{client.email}}</td>
+                    <td>{{client.phone}}</td>
+                    <td>{{client.balance | currency:'USD':'symbol'}}</td>
+                    <td><a class="button is-warning" routerLink="/client/edit/{{client.id}}"><i class="fas fa-edit"></i></a>
+                        <a class="button is-danger ml-2" (click)="deleteClient(client.id)"><i class="fas fa-trash"></i></a>
+                        <a routerLink="/client/{{client.id}}" class="button is-primary ml-2"><i class="far fa-file-alt"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="columnis-centered mt-5" *ngIf="showSpinner">
+                <div class="container">
+                    <app-spinner></app-spinner>
+                </div>
+              </div>
+          </div>
+      </div>    
+  </div>
+
+<div class="columns is-centered">
+  <ng-template #noClients>
+    <h1 class="has-text-centered">NO CLIENTS FOUND !!</h1>
+  </ng-template>
+</div>
+

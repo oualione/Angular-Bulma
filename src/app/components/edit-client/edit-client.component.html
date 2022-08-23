@@ -1,0 +1,170 @@
+<section class="hero is-primary" style="width: 100% !important;">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title has-text-centered">
+          EDIT CLIENT
+        </h1>
+        <h2 class="subtitle has-text-centered">
+          ALL FIELDS SHOUD BE VALID
+        </h2>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+    <nav class="breadcrumb mt-3" aria-label="breadcrumbs">
+        <ul>
+          <li>
+            <a routerLink="/">
+              <span class="icon is-small">
+                <i class="fas fa-home" aria-hidden="true"></i>
+              </span>
+              <span>DASHBOARD</span>
+            </a>
+          </li>
+          <li class="is-active">
+            <a routerLink="/client/add">
+              <span class="icon is-small">
+                <i class="fas fa-edit"></i>
+              </span>
+              <span>EDIT CLIENT</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+  </div>
+<div class="container">
+    <div class="is-full mt-5">
+        <form class="form" (ngSubmit)="onSubmit()" #ClientForm="ngForm">
+             <!-- first name field -->
+        <div class="field">
+            <label class="label">FIRST NAME</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="EX : Jhone" 
+                    name="firstName"
+                    #firstName="ngModel"
+                    [(ngModel)]="client.firstName"
+                    required
+                    minlength="3"
+                    maxlength="25"
+                    pattern="[a-zA-Z]+"
+                    [ngClass]="{'is-danger' : !firstName.valid && (firstName.dirty || firstName.touched) , 'is-success' : firstName.valid }"
+                    >
+                </div>
+                <div class="help is-danger" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)">
+                    <div *ngIf="firstName.errors.required" >This Field is REQUIRED</div>
+                    <div *ngIf="firstName.errors.minlength"> This field cannot contain less than {{firstName.errors.minlength.actualLength}} | {{firstName.errors.minlength.requiredLength}} char</div>
+                    <div *ngIf="firstName.errors.maxlength"> This field cannot contain pass 10 chars char</div>
+                    <div *ngIf="firstName.errors.pattern">This field can conatin only chars</div>
+                 </div>
+        </div>
+
+        <!-- last name field -->
+        <div class="field">
+            <label class="label">LAST NAME</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="EX : Doe" 
+                    name="lastName"
+                    #lastName="ngModel"
+                    [(ngModel)]="client.lastName"
+                    required
+                    minlength="3"
+                    maxlength="25"
+                    pattern="[a-zA-Z]+"
+                    [ngClass]="{'is-danger' : !lastName.valid && (lastName.dirty || lastName.touched) , 'is-success' : lastName.valid }"
+                    >
+                </div>
+                <div class="help is-danger" *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)">
+                    <div *ngIf="lastName.errors.required" >This Field is REQUIRED</div>
+                    <div *ngIf="lastName.errors.minlength"> This field cannot contain less than {{lastName.errors.minlength.actualLength}} | {{lastName.errors.minlength.requiredLength}} char</div>
+                    <div *ngIf="lastName.errors.maxlength"> This field cannot contain pass 10 chars char</div>
+                    <div *ngIf="lastName.errors.pattern">This field can conatin only chars</div>
+                 </div>
+        </div>
+        <!-- email field -->
+        <div class="field">
+            <label class="label">EMAIL</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="EX : jhon.doe@email.com" 
+                    name="email"
+                    #email="ngModel"
+                    [(ngModel)]="client.email"
+                    required
+                    minlength="3"
+                    maxlength="25"
+                    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+                    [ngClass]="{'is-danger' : !email.valid && (email.dirty || email.touched) , 'is-success' : email.valid }"
+                    >
+                </div>
+                <div class="help is-danger" *ngIf="!email.valid && (email.dirty || email.touched)">
+                    <div *ngIf="email.errors.required" >This Field is REQUIRED</div>
+                    <div *ngIf="email.errors.pattern">This field has to be a valid EMAIL ex: jhone.doe@email.com </div>
+                 </div>
+        </div>
+        <!--Adress Field-->
+        <div class="field">
+            <label class="label">ADDRESS</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="EX : 12 Orange Ave apt 23" 
+                    name="adress"
+                    #address="ngModel"
+                    [(ngModel)]="client.address"
+                    required
+                    minlength="5"
+                    maxlength="60"
+                    [ngClass]="{'is-danger' : !address.valid && (address.dirty || address.touched) , 'is-success' : address.valid }"
+                    >
+                </div>
+                <div class="help is-danger" *ngIf="!address.valid && (address.dirty || address.touched)">
+                    <div *ngIf="address.errors.required" >This Field is REQUIRED</div>
+                    <div *ngIf="address.errors.minlength">This field has cannot be less than 6 chars </div>
+                 </div>
+        </div>
+        <!--phone Field-->
+        <div class="field">
+            <label class="label">PHONE NUMBER</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="EX : 4076662299" 
+                    name="phone"
+                    #phone="ngModel" 
+                    [(ngModel)]="client.phone"
+                    required
+                    pattern="((\([0-9]{3}\))|[0-9]{3})[\s\-]?[\0-9]{3}[\s\-]?[0-9]{4}$"
+                    [ngClass]="{'is-danger' : !phone.valid && (phone.dirty || phone.touched) , 'is-success' : phone.valid }"
+                    >
+                </div>
+                <div class="help is-danger" *ngIf="!phone.valid && (phone.dirty || phone.touched)">
+                    <div *ngIf="phone.errors.required" >This Field is REQUIRED</div>
+                    <div *ngIf="phone.errors.pattern">This field has to be a valid phone number ex : 4076662299 </div>
+                 </div>
+        </div>
+
+        <!--Balance Filed-->
+        <div class="field">
+            <label class="label">BALANCE</label>
+                <div class="control">
+                    <input class="input" type="number" placeholder="EX : 100.00" 
+                    name="balance"
+                    #balance="ngModel"
+                    [(ngModel)]="client.balance"
+                    required
+                    pattern="^(0|[1-9][0-9]*)$"
+                    [ngClass]="{'is-danger' : !balance.valid && (balance.dirty || balance.touched) , 'is-success' : balance.valid }"
+                    >
+                </div>
+                <div class="help is-danger" *ngIf="!balance.valid && (balance.dirty || balance.touched)">
+                    <div *ngIf="balance.errors.required" >This Field is REQUIRED</div>
+                    <div *ngIf="balance.errors.pattern">This field has to be a valid balance number ex : 100 </div>
+                 </div>
+        </div>
+
+        <div class="field is-grouped">
+            <p class="control">
+                <button type="submit" class="button is-warning" [disabled]="!ClientForm.valid">UDATE</button>
+            </p>
+            <p class="control">
+                <a routerLink='/' class="button is-link">CANCEL</a>
+            </p>
+        </div>
+        </form>
+    </div>
+</div>

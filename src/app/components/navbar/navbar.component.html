@@ -1,0 +1,42 @@
+<nav class="navbar is-black" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://bulma.io" routerLink="/">
+        <img src="http://oualione.net/assets/img/logo2.png" width="112" height="28">
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start" *ngIf="isLoggedIn">
+        <a class="navbar-item" routerLink="/">
+          DASHBOARD
+        </a>
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item" *ngIf="!isLoggedIn">
+          <div class="buttons">
+            <a class="button is-primary" routerLink="/register">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light" routerLink="/login">
+              Log in
+            </a>
+          </div>
+        </div>
+        <div class="navbar-item" *ngIf="isLoggedIn">
+          <div class="buttons">
+            
+            <a class="button is-light" (click)="LogOut()">
+              Log out
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>

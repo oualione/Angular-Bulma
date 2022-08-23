@@ -1,0 +1,106 @@
+<section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title has-text-centered">
+         DETAIL CLIENT
+        </h1>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+    <nav class="breadcrumb mt-3" aria-label="breadcrumbs">
+        <ul>
+          <li>
+            <a routerLink="/">
+              <span class="icon is-small">
+                <i class="fas fa-home" aria-hidden="true"></i>
+              </span>
+              <span>DASHBOARD</span>
+            </a>
+          </li>
+          <li class="is-active">
+            <a routerLink="/client/add">
+              <span class="icon is-small">
+                <i class="far fa-file-alt"></i>
+              </span>
+              <span>CLIENT DETAIL</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+  </div>
+<div class="container">
+
+    <div class="columns">
+      <div class="column mt-5">
+        <div class="is-pulled-right">
+        <a class="button is-warning is-rounded" routerLink="/client/edit/{{id}}"><i class="fas fa-edit"></i></a> 
+        <button class="button is-danger is-rounded ml-2" (click)="deleteClient(id)"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+          <div class="card mt-5">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">{{client.firstName?.toUpperCase()}} {{client.lastName?.toUpperCase()}}</p>
+                  <p class="subtitle is-6">{{client.email}}</p>
+                </div>
+              </div>
+              <div class="content">
+                <i class="fas fa-map-marked-alt"></i> {{client.address}}
+                <br>
+                <i class="fas fa-phone-square"></i>  {{client.phone}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card mt-5">
+            <div class="card-content">
+              <h1 class="title is-4 has-text-centered">BALANCE</h1>
+              <h1 class="title has-text-centered" [ngClass]="{'has-text-danger' : showBalance , 'has-text-success' : !showBalance}" (click)="showBalance = !showBalance">
+                <i class="fas fa-money-bill"></i> 
+                {{client.balance | currency:'USD':'symbol'}}</h1> 
+            </div>   
+            <div *ngIf="showBalance">
+                <form (submit)="onSubmit()" #BalanceForm="ngForm">
+                  <div class="container">
+                    <div class="field">
+                      <label class="label">BALANCE</label>
+                          <div class="control">
+                              <input class="input" type="number" placeholder="EX : 100.00" 
+                              name="balance"
+                              #balance="ngModel"
+                              [(ngModel)]="client.balance"
+                              required
+                              pattern="^(0|[1-9][0-9]*)$"
+                              [ngClass]="{'is-danger' : !balance.valid && (balance.dirty || balance.touched) , 'is-success' : balance.valid }"
+                              >
+                          </div>
+                          <div class="help is-danger" *ngIf="!balance.valid && (balance.dirty || balance.touched)">
+                            <div *ngIf="balance.errors.pattern">This field has to be a valid balance number ex : 100 </div>
+                            <div *ngIf="balance.errors.required" >This Field is REQUIRED</div>
+                         </div>
+                  </div>
+                    <div class="field is-grouped is-vcentered mt-2">
+                      <p>
+                        <button class="button is-success" [disabled]="BalanceForm.invalid">UPDATE</button>
+                      </p>
+                    </div>
+                </div>    
+                </form>
+            </div>         
+          </div>
+        </div>
+    
+      </div>
+</div>
