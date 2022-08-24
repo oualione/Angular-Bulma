@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebase : {
-    apiKey: "AIzaSyB7Vg8eBUGlXspGf-WjY5iEQYHTbf9G7YI",
-    authDomain: "bulmapanel.firebaseapp.com",
-    databaseURL: "https://bulmapanel.firebaseio.com",
-    projectId: "bulmapanel",
-    storageBucket: "bulmapanel.appspot.com",
+    apiKey: "YOUR FIREBASE API KEY",
+    authDomain: "YOUR DB DOMAIN",
+    databaseURL: "YOUR DB URL",
+    projectId: "PROJECT ID",
+    storageBucket: "STORAGE BUCKET",
     messagingSenderId: "193325082571",
-    appId: "1:193325082571:web:2f21845bd16308a304784e",
-    measurementId: "G-SKSHDHS3T4"
+    appId: "APP ID",
+    measurementId: "measurementId"
   }
 };
 
